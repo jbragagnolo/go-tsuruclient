@@ -12,5 +12,6 @@ package tsuru
 // Event extra target
 type EventExtraTarget struct {
 	Target EventTarget `json:"Target,omitempty"`
-	Lock   bool        `json:"Lock,omitempty"`
+	// Whether this target should be locked
+	Lock bool `json:"Lock,omitempty"`
 }

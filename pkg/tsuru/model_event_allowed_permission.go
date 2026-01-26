@@ -11,6 +11,8 @@ package tsuru
 
 // Allowed permission
 type EventAllowedPermission struct {
-	Scheme   string                   `json:"Scheme,omitempty"`
+	// Permission scheme name
+	Scheme string `json:"Scheme,omitempty"`
+	// Permission contexts (optional)
 	Contexts []EventPermissionContext `json:"Contexts,omitempty"`
 }

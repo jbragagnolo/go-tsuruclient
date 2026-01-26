@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Target** | [**EventTarget**](EventTarget.md) |  | [optional] 
-**Lock** | **bool** |  | [optional] 
+**Lock** | **bool** | Whether this target should be locked | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

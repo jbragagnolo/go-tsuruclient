@@ -11,6 +11,8 @@ package tsuru
 
 // Permission context
 type EventPermissionContext struct {
+	// Context type
 	CtxType string `json:"CtxType,omitempty"`
-	Value   string `json:"Value,omitempty"`
+	// Context value
+	Value string `json:"Value,omitempty"`
 }

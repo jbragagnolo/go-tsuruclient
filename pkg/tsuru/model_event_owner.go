@@ -11,6 +11,8 @@ package tsuru
 
 // Event owner
 type EventOwner struct {
+	// Owner type (user, app, internal, token)
 	Type string `json:"Type,omitempty"`
+	// Owner name (e.g., user email, app name)
 	Name string `json:"Name,omitempty"`
 }

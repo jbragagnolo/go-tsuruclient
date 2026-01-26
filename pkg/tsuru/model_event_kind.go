@@ -11,6 +11,8 @@ package tsuru
 
 // Event kind
 type EventKind struct {
+	// Kind type (e.g., permission, internal)
 	Type string `json:"Type,omitempty"`
+	// Kind name (specific action name)
 	Name string `json:"Name,omitempty"`
 }

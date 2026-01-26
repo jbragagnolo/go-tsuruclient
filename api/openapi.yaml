@@ -6274,18 +6274,24 @@ components:
         Reason: Reason
       properties:
         Owner:
+          description: Who requested the cancellation
           type: string
         StartTime:
+          description: When cancellation was requested
           format: date-time
           type: string
         AckTime:
+          description: When cancellation was acknowledged
           format: date-time
           type: string
         Reason:
+          description: Reason for cancellation
           type: string
         Asked:
+          description: Whether cancellation was requested
           type: boolean
         Canceled:
+          description: Whether the event was actually canceled
           type: boolean
       type: object
     TeamTokenCreateArgs:
@@ -6503,16 +6509,21 @@ components:
         TLSPort: TLSPort
       properties:
         Name:
+          description: Instance name
           type: string
         Port:
+          description: Instance port
           type: string
         TLSPort:
+          description: Instance TLS port
           type: string
         Addresses:
+          description: Instance addresses
           items:
             type: string
           type: array
         LastUpdate:
+          description: Last update timestamp
           format: date-time
           type: string
       type: object
@@ -6883,9 +6894,11 @@ components:
         Date: 2000-01-23T04:56:07.000+00:00
       properties:
         Date:
+          description: Timestamp of the log entry
           format: date-time
           type: string
         Message:
+          description: Log message
           type: string
       type: object
     App_routers:
@@ -7085,8 +7098,10 @@ components:
           Value: Value
       properties:
         Scheme:
+          description: Permission scheme name
           type: string
         Contexts:
+          description: Permission contexts (optional)
           items:
             $ref: '#/components/schemas/EventPermissionContext'
           type: array
@@ -7249,33 +7264,7 @@ components:
           type: string
       type: object
     EventCustomData:
-      description: Parsed custom data
-      example:
-        Start:
-        - '{}'
-        - '{}'
-        End:
-        - '{}'
-        - '{}'
-        Other:
-        - '{}'
-        - '{}'
-      properties:
-        Start:
-          items:
-            properties: {}
-            type: object
-          type: array
-        End:
-          items:
-            properties: {}
-            type: object
-          type: array
-        Other:
-          items:
-            properties: {}
-            type: object
-          type: array
+      description: Parsed custom data - EventInfoCustomData format (Start, End, Other fields can be arrays, objects, or any other type)
       type: object
     App_serviceInstanceBinds:
       description: Service instance bind
@@ -7321,8 +7310,10 @@ components:
         Name: Name
       properties:
         Type:
+          description: Kind type (e.g., permission, internal)
           type: string
         Name:
+          description: Kind name (specific action name)
           type: string
       type: object
     RoleUpdateData:
@@ -7544,7 +7535,6 @@ components:
           Type: Type
           Name: Name
         EndTime: 2000-01-23T04:56:07.000+00:00
-        Log: Log
         Instance:
           Addresses:
           - Addresses
@@ -7553,14 +7543,34 @@ components:
           Port: Port
           Name: Name
           TLSPort: TLSPort
+        Target:
+          Type: Type
+          Value: Value
+        SourceIP: SourceIP
+        StartCustomData:
+          Kind: 0
+          Data: Data
+        Kind:
+          Type: Type
+          Name: Name
+        ID: ID
+        AllowedCancel:
+          Scheme: Scheme
+          Contexts:
+          - CtxType: CtxType
+            Value: Value
+          - CtxType: CtxType
+            Value: Value
+        Cancelable: true
+        Log: Log
         StartTime: 2000-01-23T04:56:07.000+00:00
         Error: Error
         EndCustomData:
-          Kind: 0.80082819046101150206595775671303272247314453125
+          Kind: 0
           Data: Data
         ExpireAt: 2000-01-23T04:56:07.000+00:00
         OtherCustomData:
-          Kind: 0.80082819046101150206595775671303272247314453125
+          Kind: 0
           Data: Data
         Allowed:
           Scheme: Scheme
@@ -7572,21 +7582,11 @@ components:
         Lock:
           Type: Type
           Value: Value
-        Target:
-          Type: Type
-          Value: Value
         StructuredLog:
         - Message: Message
           Date: 2000-01-23T04:56:07.000+00:00
         - Message: Message
           Date: 2000-01-23T04:56:07.000+00:00
-        SourceIP: SourceIP
-        StartCustomData:
-          Kind: 0.80082819046101150206595775671303272247314453125
-          Data: Data
-        Kind:
-          Type: Type
-          Name: Name
         CancelInfo:
           Asked: true
           Owner: Owner
@@ -7595,42 +7595,32 @@ components:
           Canceled: true
           Reason: Reason
         Running: true
-        CustomData:
-          Start:
-          - '{}'
-          - '{}'
-          End:
-          - '{}'
-          - '{}'
-          Other:
-          - '{}'
-          - '{}'
-        AllowedCancel:
-          Scheme: Scheme
-          Contexts:
-          - CtxType: CtxType
-            Value: Value
-          - CtxType: CtxType
-            Value: Value
-        Cancelable: true
         LockUpdateTime: 2000-01-23T04:56:07.000+00:00
       properties:
+        ID:
+          description: MongoDB ObjectID as string (bson _id field)
+          type: string
         UniqueID:
+          description: Unique identifier as ObjectID string
           type: string
         Lock:
           $ref: '#/components/schemas/EventTarget'
         StartTime:
+          description: Event start time
           format: date-time
           type: string
         EndTime:
+          description: Event end time (optional)
           format: date-time
           type: string
         ExpireAt:
+          description: When the event expires and can be removed (optional)
           format: date-time
           type: string
         Target:
           $ref: '#/components/schemas/EventTarget'
         ExtraTargets:
+          description: Additional targets for this event
           items:
             $ref: '#/components/schemas/EventExtraTarget'
           type: array
@@ -7639,23 +7629,30 @@ components:
         Owner:
           $ref: '#/components/schemas/EventOwner'
         SourceIP:
+          description: IP address from which the event was triggered
           type: string
         LockUpdateTime:
+          description: Last time the lock was updated
           format: date-time
           type: string
         Error:
+          description: Error message if the event failed
           type: string
         Log:
+          description: Event log (plain text, optional)
           type: string
         StructuredLog:
+          description: Structured log entries
           items:
             $ref: '#/components/schemas/EventLogEntry'
           type: array
         CancelInfo:
           $ref: '#/components/schemas/EventCancelInfo'
         Cancelable:
+          description: Whether this event can be canceled
           type: boolean
         Running:
+          description: Whether this event is currently running
           type: boolean
         Allowed:
           $ref: '#/components/schemas/EventAllowedPermission'
@@ -9216,14 +9213,17 @@ components:
           type: string
       type: object
     EventStartCustomData:
-      description: Raw custom data (BSON encoded)
+      description: Raw custom data (BSON encoded) - LegacyBSONRaw format
       example:
-        Kind: 0.80082819046101150206595775671303272247314453125
+        Kind: 0
         Data: Data
       properties:
         Kind:
-          type: number
+          description: BSON type identifier (byte)
+          format: int8
+          type: integer
         Data:
+          description: Raw BSON data
           format: byte
           pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
           type: string
@@ -9366,8 +9366,10 @@ components:
         Name: Name
       properties:
         Type:
+          description: Owner type (user, app, internal, token)
           type: string
         Name:
+          description: Owner name (e.g., user email, app name)
           type: string
       type: object
     UserData:
@@ -9403,8 +9405,10 @@ components:
         Value: Value
       properties:
         CtxType:
+          description: Context type
           type: string
         Value:
+          description: Context value
           type: string
       type: object
     Env:
@@ -9511,8 +9515,10 @@ components:
         Value: Value
       properties:
         Type:
+          description: Target type (e.g., app, job, pool, service, etc.)
           type: string
         Value:
+          description: Target value (e.g., app name, pool name)
           type: string
       type: object
     EventExtraTarget:
@@ -9526,6 +9532,7 @@ components:
         Target:
           $ref: '#/components/schemas/EventTarget'
         Lock:
+          description: Whether this target should be locked
           type: boolean
       type: object
     EnvSetData:

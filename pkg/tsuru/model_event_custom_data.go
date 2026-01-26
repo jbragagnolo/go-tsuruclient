@@ -9,9 +9,6 @@
 
 package tsuru
 
-// Parsed custom data
+// Parsed custom data - EventInfoCustomData format (Start, End, Other fields can be arrays, objects, or any other type)
 type EventCustomData struct {
-	Start []map[string]interface{} `json:"Start,omitempty"`
-	End   []map[string]interface{} `json:"End,omitempty"`
-	Other []map[string]interface{} `json:"Other,omitempty"`
 }

@@ -15,10 +15,16 @@ import (
 
 // Event cancellation information
 type EventCancelInfo struct {
-	Owner     string    `json:"Owner,omitempty"`
+	// Who requested the cancellation
+	Owner string `json:"Owner,omitempty"`
+	// When cancellation was requested
 	StartTime time.Time `json:"StartTime,omitempty"`
-	AckTime   time.Time `json:"AckTime,omitempty"`
-	Reason    string    `json:"Reason,omitempty"`
-	Asked     bool      `json:"Asked,omitempty"`
-	Canceled  bool      `json:"Canceled,omitempty"`
+	// When cancellation was acknowledged
+	AckTime time.Time `json:"AckTime,omitempty"`
+	// Reason for cancellation
+	Reason string `json:"Reason,omitempty"`
+	// Whether cancellation was requested
+	Asked bool `json:"Asked,omitempty"`
+	// Whether the event was actually canceled
+	Canceled bool `json:"Canceled,omitempty"`
 }

@@ -11,6 +11,8 @@ package tsuru
 
 // Event target
 type EventTarget struct {
-	Type  string `json:"Type,omitempty"`
+	// Target type (e.g., app, job, pool, service, etc.)
+	Type string `json:"Type,omitempty"`
+	// Target value (e.g., app name, pool name)
 	Value string `json:"Value,omitempty"`
 }

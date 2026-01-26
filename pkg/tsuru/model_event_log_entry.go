@@ -15,6 +15,8 @@ import (
 
 // Event structured log entry
 type EventLogEntry struct {
-	Date    time.Time `json:"Date,omitempty"`
-	Message string    `json:"Message,omitempty"`
+	// Timestamp of the log entry
+	Date time.Time `json:"Date,omitempty"`
+	// Log message
+	Message string `json:"Message,omitempty"`
 }

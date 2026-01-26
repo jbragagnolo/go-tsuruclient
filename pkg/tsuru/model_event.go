@@ -15,22 +15,36 @@ import (
 
 // Tsuru event
 type Event struct {
-	UniqueID        string                 `json:"UniqueID,omitempty"`
-	Lock            EventTarget            `json:"Lock,omitempty"`
-	StartTime       time.Time              `json:"StartTime,omitempty"`
-	EndTime         time.Time              `json:"EndTime,omitempty"`
-	ExpireAt        time.Time              `json:"ExpireAt,omitempty"`
-	Target          EventTarget            `json:"Target,omitempty"`
-	ExtraTargets    []EventExtraTarget     `json:"ExtraTargets,omitempty"`
-	Kind            EventKind              `json:"Kind,omitempty"`
-	Owner           EventOwner             `json:"Owner,omitempty"`
-	SourceIP        string                 `json:"SourceIP,omitempty"`
-	LockUpdateTime  time.Time              `json:"LockUpdateTime,omitempty"`
-	Error           string                 `json:"Error,omitempty"`
-	Log             string                 `json:"Log,omitempty"`
-	StructuredLog   []EventLogEntry        `json:"StructuredLog,omitempty"`
-	CancelInfo      EventCancelInfo        `json:"CancelInfo,omitempty"`
-	Cancelable      bool                   `json:"Cancelable,omitempty"`
+	// MongoDB ObjectID as string (bson _id field)
+	ID string `json:"ID,omitempty"`
+	// Unique identifier as ObjectID string
+	UniqueID string      `json:"UniqueID,omitempty"`
+	Lock     EventTarget `json:"Lock,omitempty"`
+	// Event start time
+	StartTime time.Time `json:"StartTime,omitempty"`
+	// Event end time (optional)
+	EndTime time.Time `json:"EndTime,omitempty"`
+	// When the event expires and can be removed (optional)
+	ExpireAt time.Time   `json:"ExpireAt,omitempty"`
+	Target   EventTarget `json:"Target,omitempty"`
+	// Additional targets for this event
+	ExtraTargets []EventExtraTarget `json:"ExtraTargets,omitempty"`
+	Kind         EventKind          `json:"Kind,omitempty"`
+	Owner        EventOwner         `json:"Owner,omitempty"`
+	// IP address from which the event was triggered
+	SourceIP string `json:"SourceIP,omitempty"`
+	// Last time the lock was updated
+	LockUpdateTime time.Time `json:"LockUpdateTime,omitempty"`
+	// Error message if the event failed
+	Error string `json:"Error,omitempty"`
+	// Event log (plain text, optional)
+	Log string `json:"Log,omitempty"`
+	// Structured log entries
+	StructuredLog []EventLogEntry `json:"StructuredLog,omitempty"`
+	CancelInfo    EventCancelInfo `json:"CancelInfo,omitempty"`
+	// Whether this event can be canceled
+	Cancelable bool `json:"Cancelable,omitempty"`
+	// Whether this event is currently running
 	Running         bool                   `json:"Running,omitempty"`
 	Allowed         EventAllowedPermission `json:"Allowed,omitempty"`
 	AllowedCancel   EventAllowedPermission `json:"AllowedCancel,omitempty"`
